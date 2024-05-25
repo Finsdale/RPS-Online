@@ -13,11 +13,13 @@ namespace RPS_Online
     public List<IGameState> GameStack = new();
     public GameData gameData;
     public RoleSelection roleSelection;
+    public WaitingForPlayers waitingForPlayers;
 
     public GameStateMachine()
     {
       gameData = new GameData();
       roleSelection = new RoleSelection(this);
+      waitingForPlayers = new WaitingForPlayers(this);
       /*
       Here is a list of states that will be required:
       Both:

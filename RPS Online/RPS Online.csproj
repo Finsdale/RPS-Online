@@ -18,7 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ControllerInput">
-      <HintPath>D:\GitHub\ControllerInput\ControllerInput\bin\Debug\net6.0\ControllerInput.dll</HintPath>
+      <HintPath>..\..\ControllerInput\ControllerInput\bin\Debug\net6.0\ControllerInput.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
