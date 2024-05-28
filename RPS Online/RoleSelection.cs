@@ -24,13 +24,16 @@ namespace RPS_Online
     public void Update(NewInput input)
     {
       if (input.MInput.IsButtonReleased(MouseButton.Left)) {
-        if (HostRectangle.Intersects(new Rectangle(input.MInput.MousePosition(), Point.Zero))) {
+        Rectangle mousePosition = new Rectangle(input.MInput.MousePosition(), Point.Zero);
+        if (HostRectangle.Intersects(mousePosition)) {
           gameData.Host();
           GameStateMachine.Pop();
           GameStateMachine.Push(GameStateMachine.waitingForPlayers);
         }
-        else if(ClientRectangle.Intersects(new Rectangle(input.MInput.MousePosition(), Point.Zero))) {
-
+        else if(ClientRectangle.Intersects(mousePosition)) {
+          gameData.Client();
+          GameStateMachine.Pop();
+          GameStateMachine.Push(GameStateMachine.selectionRequest);
         }
       }
     }

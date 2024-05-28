@@ -1,5 +1,6 @@
 ﻿using ControllerInput;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,27 @@ namespace RPS_Online
 {
   internal class WaitingForPlayers : IGameState
   {
-    public WaitingForPlayers(GameStateMachine gameStateMachine) { }
-    public void Update(NewInput input) { }
-    public void Draw(SpriteBatch spriteBatch) { }
+    GameStateMachine gameStateMachine;
+    GameData gameData;
+    TextureCollection TC = TextureCollection.Instance;
+
+    public WaitingForPlayers(GameStateMachine gameStateMachine)
+    {
+      this.gameStateMachine = gameStateMachine;
+      this.gameData = gameStateMachine.gameData;
+    }
+    public void Update(NewInput input)
+    {
+      gameData.Update();
+      if (gameData.gameActive) {
+        gameStateMachine.Pop();
+        gameStateMachine.Push(gameStateMachine.selectionRequest);
+      }
+    }
+    public void Draw(SpriteBatch spriteBatch)
+    {
+      spriteBatch.DrawString(TC.Text, "Waiting for players", new Vector2(20, 20), Color.Black);
+      spriteBatch.DrawString(TC.Text, $"Connected Players: {gameData.playersConnected}", new Vector2(20, 40), Color.Black);
+    }
   }
 }
