@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MLEM.Input;
 
 namespace RPS_Online
 {
@@ -20,7 +21,7 @@ namespace RPS_Online
       this.gameStateMachine = gameStateMachine;
       this.gameData = gameStateMachine.gameData;
     }
-    public void Update(NewInput input)
+    public void Update(NewInput input, InputHandler otherInput)
     {
       gameData.Update();
       if (gameData.gameActive) {

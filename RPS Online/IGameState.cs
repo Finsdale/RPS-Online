@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using ControllerInput;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Input;
 
 namespace RPS_Online
 {
   internal interface IGameState
   {
-    public void Update(NewInput input);
+    public void Update(NewInput input, InputHandler otherInput);
     public void Draw(SpriteBatch spriteBatch);
   }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MLEM.Input;
 
 namespace RPS_Online
 {
@@ -13,13 +14,15 @@ namespace RPS_Online
     GameStateMachine _gameStateMachine = new();
     NewInput _input = new NewInput(0, false, true);
     TextureCollection TC;
-
+    InputHandler otherInput;
     public Game1()
     {
       _graphics = new GraphicsDeviceManager(this);
       Content.RootDirectory = "Content";
       IsMouseVisible = true;
       TC = TextureCollection.Instance;
+      otherInput = new InputHandler(this, true, true, false, false, false);
+
     }
 
     protected override void Initialize()
@@ -48,7 +51,8 @@ namespace RPS_Online
 
       // TODO: Add your update logic here
       _input.Update();
-      _gameStateMachine.Update(_input);
+      otherInput.Update();
+      _gameStateMachine.Update(_input, otherInput);
 
       base.Update(gameTime);
     }

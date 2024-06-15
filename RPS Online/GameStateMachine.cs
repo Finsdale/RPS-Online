@@ -1,5 +1,6 @@
 ﻿using ControllerInput;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,10 +58,10 @@ namespace RPS_Online
       GameStack.RemoveAt(GameStack.Count - 1);
     }
 
-    public void Update(NewInput input)
+    public void Update(NewInput input, InputHandler otherInput)
     {
       if(GameStack.Count > 0) {
-        GameStack[^1].Update(input);
+        GameStack[^1].Update(input, otherInput);
       }
     }
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MLEM.Input;
 
 namespace RPS_Online
 {
@@ -21,10 +22,10 @@ namespace RPS_Online
       this.gameData = gameStateMachine.gameData;
     }
 
-    public void Update(NewInput input)
+    public void Update(NewInput input, InputHandler otherInput)
     {
-      if (input.MInput.IsButtonReleased(MouseButton.Left)) {
-        Rectangle mousePosition = new Rectangle(input.MInput.MousePosition(), Point.Zero);
+      if (input.MInput.IsButtonReleased(ControllerInput.MouseButton.Left)) {
+        Rectangle mousePosition = new Rectangle(otherInput.MousePosition, Point.Zero);
         if (HostRectangle.Intersects(mousePosition)) {
           gameData.Host();
           GameStateMachine.Pop();
