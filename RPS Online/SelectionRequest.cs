@@ -23,13 +23,14 @@ namespace RPS_Online
       this.gameStateMachine = gameStateMachine;
       this.gameData = gameStateMachine.gameData;
     }
-    public void Update(NewInput input, InputHandler otherInput)
+    public void Update(InputHandler input, GameTime gameTime)
     {
+      input.InvertPressBehavior = true;
       gameData.Update();
       if(gameData.selectionMade == false) {
-        if (otherInput.try
-          input.MInput.IsButtonReleased(ControllerInput.MouseButton.Left)) {
-          Rectangle mousePosition = new Rectangle(input.MInput.MousePosition(), Point.Zero);
+        if (input.IsPressed(MLEM.Input.MouseButton.Left)) { 
+          //input.MInput.IsButtonReleased(ControllerInput.MouseButton.Left)) {
+          Rectangle mousePosition = new Rectangle(input.MousePosition, Point.Zero);
           if (RockButton.Intersects(mousePosition)) {
             gameData.selectionMade = true;
             gameData.SendSelection("R");
@@ -43,7 +44,7 @@ namespace RPS_Online
         }
       }
     }
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
     {
       if(gameData.selectionMade == false) {
         spriteBatch.DrawString(TC.Text, "Make your selection", new Vector2(20, 20), Color.Black);

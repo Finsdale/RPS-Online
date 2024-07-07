@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using ControllerInput;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Input;
+using Microsoft.Xna.Framework;
 
 namespace RPS_Online
 {
   internal interface IGameState
   {
-    public void Update(NewInput input, InputHandler otherInput);
-    public void Draw(SpriteBatch spriteBatch);
+    public void Update(InputHandler input, GameTime gameTime);
+    public void Draw(SpriteBatch spriteBatch, GameTime gameTime);
   }
 }

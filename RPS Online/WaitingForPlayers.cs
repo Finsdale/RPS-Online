@@ -21,7 +21,7 @@ namespace RPS_Online
       this.gameStateMachine = gameStateMachine;
       this.gameData = gameStateMachine.gameData;
     }
-    public void Update(NewInput input, InputHandler otherInput)
+    public void Update(InputHandler input, GameTime gameTime)
     {
       gameData.Update();
       if (gameData.gameActive) {
@@ -29,7 +29,7 @@ namespace RPS_Online
         gameStateMachine.Push(gameStateMachine.selectionRequest);
       }
     }
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
     {
       spriteBatch.DrawString(TC.Text, "Waiting for players", new Vector2(20, 20), Color.Black);
       spriteBatch.DrawString(TC.Text, $"Connected Players: {gameData.playersConnected}", new Vector2(20, 40), Color.Black);

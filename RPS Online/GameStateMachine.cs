@@ -1,4 +1,5 @@
 ﻿using ControllerInput;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Input;
 using System;
@@ -58,17 +59,17 @@ namespace RPS_Online
       GameStack.RemoveAt(GameStack.Count - 1);
     }
 
-    public void Update(NewInput input, InputHandler otherInput)
+    public void Update(InputHandler input, GameTime gameTime)
     {
       if(GameStack.Count > 0) {
-        GameStack[^1].Update(input, otherInput);
+        GameStack[^1].Update(input, gameTime);
       }
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
     {
       for(int i = 0; i < GameStack.Count; i++) {
-        GameStack[i].Draw(spriteBatch);
+        GameStack[i].Draw(spriteBatch, gameTime);
       }
     }
   }

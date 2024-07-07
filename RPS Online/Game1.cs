@@ -12,16 +12,15 @@ namespace RPS_Online
     private SpriteBatch _spriteBatch;
     RenderTarget2D _renderTarget;
     GameStateMachine _gameStateMachine = new();
-    NewInput _input = new NewInput(0, false, true);
     TextureCollection TC;
-    InputHandler otherInput;
+    InputHandler _input;
     public Game1()
     {
       _graphics = new GraphicsDeviceManager(this);
       Content.RootDirectory = "Content";
       IsMouseVisible = true;
       TC = TextureCollection.Instance;
-      otherInput = new InputHandler(this, true, true, false, false, false);
+      _input = new InputHandler(this, true, true, false, false, false);
 
     }
 
@@ -32,7 +31,7 @@ namespace RPS_Online
       _graphics.PreferredBackBufferHeight = 480;
       _graphics.ApplyChanges();
       _renderTarget = new RenderTarget2D(GraphicsDevice, 800, 480, false, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-      _input.SetMouseScale(new Vector2(800, 480), new Vector2(800, 480));
+      //_input.SetMouseScale(new Vector2(800, 480), new Vector2(800, 480));
 
       base.Initialize();
     }
@@ -50,9 +49,9 @@ namespace RPS_Online
         Exit();
 
       // TODO: Add your update logic here
+      //_input.Update();
       _input.Update();
-      otherInput.Update();
-      _gameStateMachine.Update(_input, otherInput);
+      _gameStateMachine.Update(_input, gameTime);
 
       base.Update(gameTime);
     }
@@ -63,7 +62,7 @@ namespace RPS_Online
       GraphicsDevice.Clear(Color.CornflowerBlue);
       _spriteBatch.Begin();
       // TODO: Add your drawing code here
-      _gameStateMachine.Draw(_spriteBatch);
+      _gameStateMachine.Draw(_spriteBatch, gameTime);
       _spriteBatch.End();
       GraphicsDevice.SetRenderTarget(null);
       GraphicsDevice.Clear(Color.CornflowerBlue);
